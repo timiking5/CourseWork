@@ -175,5 +175,46 @@ namespace CourseWork
                 Console.Write("\n");
             }
         }
+        public static void RealWordExample()
+        {
+            Console.WriteLine("Real World Exapmle");
+            Graph graph = new(7);
+            Dictionary<int, string> cities = new()
+            {
+                { 0, "Казань" },
+                { 1, "Мамадыш" },
+                { 2, "Чистополь" },
+                { 3, "Наб.Челны" },
+                { 4, "Нижнекамск" },
+                { 5, "Бугульма" },
+                { 6, "Уфа" }
+            };
+            graph.AddEdge(0, 1, 163);
+            graph.AddEdge(0, 2, 126);
+            graph.AddEdge(1, 3, 95);
+            graph.AddEdge(1, 4, 116);
+            graph.AddEdge(2, 4, 102);
+            graph.AddEdge(2, 5, 185);
+            graph.AddEdge(4, 6, 332);
+            graph.AddEdge(5, 6, 240);
+            graph.AddEdge(3, 6, 291);
+            graph.Dijkstra(0);
+            Vertex currentVertex = graph.Vertexes[6];
+            List<int> route = new();
+            while (currentVertex.Num != 0)
+            {
+                route.Add(currentVertex.Num);
+                currentVertex = graph.Vertexes[(int)currentVertex.Parent];
+            }
+            route.Add(0);
+            route.Reverse();
+            route.Remove(6);
+            for (int i  = 0; i < route.Count; i++)
+            {
+                Console.Write($"{cities[route[i]]} --> ");
+            }
+            Console.Write("Уфа\n");
+            Console.WriteLine($"Путь составляет {graph.Vertexes[6].Distance} км");
+        }
     }
 }

@@ -18,6 +18,7 @@ public class Runner
         Tests.TestDAGShortestPath();
         Tests.TestAllShortestPathsPairs();
         Tests.TestFloydWarshal();
+        Tests.RealWordExample();
     }
     
 }
